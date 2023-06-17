@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1019228311593",
+    "project_id": "medisafe-rider",
+    "storage_bucket": "medisafe-rider.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019228311593:android:6179f15f0eb13610af0c38",
+        "android_client_info": {
+          "package_name": "com.medisphere.driversapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1019228311593-hdo4lo0p105f9on65mbv52db9en85lcj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLjWUmg7qL5Y7NP1EHwUcHnsAsjIBoalQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1019228311593-hdo4lo0p105f9on65mbv52db9en85lcj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
