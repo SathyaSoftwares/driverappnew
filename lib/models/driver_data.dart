@@ -5,9 +5,8 @@ class DriverData
   String? name;
   String? phone;
   String? email;
-  String? car_color;
-  String? car_model;
-  String? car_number;
+  String? ambulance_model;
+  String? ambulance_number;
   String? ambulance_type;
 
   DriverData({
@@ -15,9 +14,8 @@ class DriverData
     this.name,
     this.phone,
     this.email,
-    this.car_color,
-    this.car_model,
-    this.car_number,
+    this.ambulance_model,
+    this.ambulance_number,
     this.ambulance_type,
   });
 }

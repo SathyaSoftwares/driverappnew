@@ -18,7 +18,17 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
   List<String> ambulancetypesList = ["Ambulance Type - A","Ambulance Type - B"];
   String? selectedAmbulanceType;
 
+  int selectedAmbulanceTypeInt = 0;
+
   saveCarInfo(){
+    if(selectedAmbulanceTypeInt==0)
+      {
+        selectedAmbulanceType="Ambulance Type - A";
+      }
+    else if(selectedAmbulanceTypeInt==1)
+    {
+      selectedAmbulanceType="Ambulance Type - B";
+    }
     Map driverCarInfoMap =
     {
       "ambulance_model": txtAmbulanceModelController.text.trim(),
@@ -31,6 +41,48 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
 
     Fluttertoast.showToast(msg: "Ambulance Details has been saved");
     Navigator.push(context, MaterialPageRoute(builder: (c)=>MySplashScreen()));
+  }
+
+  Widget AmbulanceCardButton(String assetName, int index) {
+    return OutlinedButton(
+      onPressed: () {
+        setState(() {
+          selectedAmbulanceTypeInt = index;
+        });
+      },
+      style: OutlinedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+        shape:
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        side: BorderSide(
+            width: (selectedAmbulanceTypeInt == index) ? 2.0 : 0.5,
+            color: (selectedAmbulanceTypeInt == index)
+                ? Colors.green
+                : Colors.blue.shade600),
+      ),
+      child: Stack(
+        children: [
+          Center(
+            child: Image.asset(
+              assetName,
+              fit: BoxFit.contain,
+              width: 120,
+              height: 120,
+            ),
+          ),
+          if (selectedAmbulanceTypeInt == index)
+            Positioned(
+              top: 5,
+              right: 5,
+              child: Image.asset(
+                "images/tick.png",
+                width: 25,
+                fit: BoxFit.cover,
+              ),
+            ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -104,47 +156,27 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
               ),
               SizedBox(height: 15.0,),
 
-              DropdownButtonFormField(
-                iconSize: 26,
-                dropdownColor: Colors.teal,
-                hint: const Text(
-                    "Please Choose Ambulance Type",
-                  style: TextStyle(
-                    fontSize: 14.0,
-                    color: Colors.black
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      AmbulanceCardButton("images/Ambulance Type - A.png", 0),
+                      Text("Type A with Ventilation",style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),)
+                    ],
                   ),
-                ),
-                value: selectedAmbulanceType,
-                onChanged: (newValue){
-                  setState(() {
-                    selectedAmbulanceType=newValue;
-                  });
-                },
-                items: ambulancetypesList.map((ambulance){
-                  return DropdownMenuItem(child: Text(
-                    ambulance,
-                    style: const TextStyle(color: Colors.black),
+                  const SizedBox(
+                    width: 9,
                   ),
-                  value: ambulance,
-                  );
-                }).toList(),
-                decoration: InputDecoration(
-                    labelText: "Ambulance Type",
-                    labelStyle: TextStyle(
-                      fontSize: 14.0,
-                      color: Colors.black
-                    ),
-                    hintStyle: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10.0
-                    ),
-                    border:TextBoxBorder.txtBorder(),
-                    focusedBorder: TextBoxBorder.txtFocus()
-                ),
-                style: TextStyle(
-                  fontSize: 14.0,
-                ),
+                  Column(
+                    children: [
+                      AmbulanceCardButton("images/Ambulance Type - B.png", 1),
+                      Center(child: Text("Type B without Ventilation",style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),))
+                    ],
+                  ),
+                ],
               ),
+
               SizedBox(height: 16,),
               ElevatedButton(
                 style:ElevatedButton.styleFrom(
@@ -166,7 +198,7 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                 ),
 
                 onPressed: (){
-                  if(txtAmbulanceNumberController.text.isNotEmpty &&  selectedAmbulanceType != null)
+                  if(txtAmbulanceNumberController.text.isNotEmpty)
                   {
                     saveCarInfo();
                   }

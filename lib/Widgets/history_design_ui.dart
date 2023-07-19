@@ -33,7 +33,7 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget>
   Widget build(BuildContext context)
   {
     return Container(
-      color: Colors.black54,
+      color: Color(0xFF9DE5E0),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Column(
@@ -84,7 +84,7 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget>
                   widget.tripsHistoryModel!.userPhone!,
                   style: const TextStyle(
                     fontSize: 16,
-                    color: Colors.grey,
+                    color: Colors.black,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -157,9 +157,9 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget>
               children: [
                 const Text(""),
                 Text(
-                  formatDateAndTime(widget.tripsHistoryModel!.time!),
+                  formatDateAndTime(widget.tripsHistoryModel!.BookedOn!),
                   style: const TextStyle(
-                    color: Colors.grey,
+                    color: Colors.black,
                   ),
                 ),
               ],

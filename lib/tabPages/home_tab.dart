@@ -22,6 +22,7 @@ class HomeTabPage extends StatefulWidget {
 class _HomeTabPageState extends State<HomeTabPage> {
   final Completer<GoogleMapController> _controllerGoogleMap =  Completer<GoogleMapController>();
   GoogleMapController? newGoogleMapController;
+  late double bottomPaddingofMap=0;
 
   static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
@@ -79,15 +80,15 @@ class _HomeTabPageState extends State<HomeTabPage> {
         onlineDriverData.phone = (snap.snapshot.value as Map)["phone"];
         onlineDriverData.email = (snap.snapshot.value as Map)["email"];
         //onlineDriverData.car_color = (snap.snapshot.value as Map)["Ambulance_details"]["car_color"];
-        onlineDriverData.car_model = (snap.snapshot.value as Map)["Ambulance_details"]["ambulance_model"];
-        onlineDriverData.car_number = (snap.snapshot.value as Map)["Ambulance_details"]["ambulance_number"];
+        onlineDriverData.ambulance_type = (snap.snapshot.value as Map)["Ambulance_details"]["ambulance_type"];
+        onlineDriverData.ambulance_number = (snap.snapshot.value as Map)["Ambulance_details"]["ambulance_number"];
 
         driverVehicleType = (snap.snapshot.value as Map)["Ambulance_details"]["ambulance_type"];
 
         print("Ambulance Details :: ");
         //print(onlineDriverData.car_color);
-        print(onlineDriverData.car_model);
-        print(onlineDriverData.car_number);
+        print(onlineDriverData.ambulance_type);
+        print(onlineDriverData.ambulance_number);
       }
     });
     PushNotificationSystem pushNotificationSystem = PushNotificationSystem();
@@ -112,13 +113,15 @@ class _HomeTabPageState extends State<HomeTabPage> {
       body: Stack(
         children: [
           GoogleMap(
+            padding: EdgeInsets.only(top: 40.0),
             mapType: MapType.normal,
             myLocationEnabled: true,
+            zoomControlsEnabled: true,
+            zoomGesturesEnabled: true,
             initialCameraPosition: _kGooglePlex,
             onMapCreated: (GoogleMapController controller){
               _controllerGoogleMap.complete(controller);
               newGoogleMapController = controller;
-
               locateDriverPosition();
             },
           ),

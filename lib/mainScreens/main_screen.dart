@@ -26,7 +26,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
   void initState() {
     // TODO: implement initState
     super.initState();
-    tabController=TabController(length: 4, vsync: this);
+    tabController=TabController(length: 3, vsync: this);
   }
 
   @override
@@ -37,7 +37,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
         controller: tabController,
         children: const[
           HomeTabPage(),
-          EarningTabPage(),
+          EarningsTabPage(),
           //RatingTabPage(),
           ProfileTabPage()
         ],
@@ -50,7 +50,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.credit_card),
-              label: "Earnings"
+              label: "Trip History"
           ),
           /*BottomNavigationBarItem(
               icon: Icon(Icons.star),

@@ -21,14 +21,14 @@ class _TripsHistoryScreenState extends State<TripsHistoryScreen>
   Widget build(BuildContext context)
   {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xFFe2fefc),
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xFFe2fefc),
         title: const Text(
-          "Trips History"
+          "Trips History",style: TextStyle(color: Colors.black),
         ),
         leading: IconButton(
-          icon: const Icon(Icons.close),
+          icon: const Icon(Icons.close,color: Colors.black,),
           onPressed: ()
           {
             SystemNavigator.pop();
